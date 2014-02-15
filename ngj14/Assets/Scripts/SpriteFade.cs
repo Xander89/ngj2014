@@ -10,6 +10,8 @@ public class SpriteFade : MonoBehaviour {
 	void Start()
 	{
 		rend = GetComponentInChildren<SpriteRenderer>();
+		targetAlpha = rend.color.a;
+
 	}
 
 	// Use this for initialization

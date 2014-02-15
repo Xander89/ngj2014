@@ -35,6 +35,11 @@ public class SfxManager : MonoBehaviour {
 	// Update is called once per frame
 	public void PlaySfx (string name) {
 		AudioClip a = Resources.Load<AudioClip>(name);	
+		if(a == null)
+		{
+			Debug.Log(name);
+			Debug.Log("BILABILABILLABILAL!");
+		}
 		ActiveSource s = getFirstNotBusyAudioSouce();
 		if(s != null)
 		{
