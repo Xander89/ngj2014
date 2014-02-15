@@ -21,6 +21,7 @@ public class EnemySpawn : MonoBehaviour
 
 	IEnumerator Start()
 	{
+
 		yield return new WaitForSeconds(initTime);
 		timeSinceBeginning = 0.0f;
 		StartCoroutine(updateTime());
@@ -34,6 +35,7 @@ public class EnemySpawn : MonoBehaviour
 			Vector3 minDelta = new Vector3(direction.x, direction.y, 0.0f) * minRadius;
 
 			GameObject g = (GameObject) Instantiate(enemy, transform.position + spawnDelta, Quaternion.identity);
+			g.transform.parent = transform;
 			Enemy e = g.GetComponent<Enemy>();
 			e.StartMovement(transform.position + minDelta);
 
