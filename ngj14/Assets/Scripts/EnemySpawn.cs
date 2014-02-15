@@ -63,7 +63,7 @@ public class EnemySpawn : MonoBehaviour
 				e.StartMovement(transform.position + minDelta);
 				Debug.Log ("_enemySounds.Length " + _enemySounds.Length);
 				Debug.Log ("STRING " +  _enemySounds[sound_index].ToString());
-				sfx_manager.PlaySfx(_enemySounds[sound_index].ToString());
+				sfx_manager.PlaySfx(_enemySounds[sound_index]);
 			}
 			/*Debug.Log("evil sprites length.. " + _evilSprites.Length);
 			SpriteRenderer randomSprite = _evilSprites[Random.Range(0, _evilSprites.Length)];
