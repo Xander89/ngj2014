@@ -10,7 +10,7 @@ public class EnemySpawn : MonoBehaviour
 	private GameObject[] _enemies;
 
 	[SerializeField]
-	private AudioClip[] _enemySounds;
+	private string[] _enemySounds;
 
 	//[SerializeField]
 	//private GameObject _evilSpriteContainer;
@@ -108,6 +108,7 @@ public class EnemySpawn : MonoBehaviour
 		}
 		return 1;
 	}
+
 
 /*	IEnumerator Spawn()
 	{
