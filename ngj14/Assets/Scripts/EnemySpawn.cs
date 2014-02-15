@@ -4,7 +4,13 @@ using System.Collections;
 public class EnemySpawn : MonoBehaviour 
 {
 	[SerializeField]
+	private SfxManager sfx_manager;
+
+	[SerializeField]
 	private GameObject[] _enemies;
+
+	[SerializeField]
+	private AudioClip[] _enemySounds;
 
 	//[SerializeField]
 	//private GameObject _evilSpriteContainer;
@@ -46,6 +52,7 @@ public class EnemySpawn : MonoBehaviour
 			for(int i = 0; i < GetMultiplicity(); i++) 
 			{
 				int index = Random.Range(0, _enemies.Length);
+				int sound_index = Random.Range(0, _enemySounds.Length);
 				Vector2 direction = GetRandomVector();
 				Vector3 spawnDelta = new Vector3(direction.x, direction.y, 0.0f) * spawnRadius;
 				Vector3 minDelta = new Vector3(direction.x, direction.y, 0.0f) * minRadius;
@@ -54,6 +61,9 @@ public class EnemySpawn : MonoBehaviour
 				g.transform.parent = transform;
 				Enemy e = g.GetComponent<Enemy>();
 				e.StartMovement(transform.position + minDelta);
+				Debug.Log ("_enemySounds.Length " + _enemySounds.Length);
+				Debug.Log ("STRING " +  _enemySounds[sound_index].ToString());
+				sfx_manager.PlaySfx(_enemySounds[sound_index].ToString());
 			}
 			/*Debug.Log("evil sprites length.. " + _evilSprites.Length);
 			SpriteRenderer randomSprite = _evilSprites[Random.Range(0, _evilSprites.Length)];
