@@ -10,6 +10,7 @@ public class EnemySpawn : MonoBehaviour
 	//private GameObject _evilSpriteContainer;
 
 	public AnimationCurve difficultyCurve;
+	public AnimationCurve enemyMultiplicityChanceCurve;
 
 	public float spawnRadius = 10;
 	public float minRadius = 1;
@@ -42,21 +43,23 @@ public class EnemySpawn : MonoBehaviour
 		currentAverageTime = averageInterSpawnTime;
 		while(true)
 		{
-			Vector2 direction = GetRandomVector();
-			Vector3 spawnDelta = new Vector3(direction.x, direction.y, 0.0f) * spawnRadius;
-			Vector3 minDelta = new Vector3(direction.x, direction.y, 0.0f) * minRadius;
-
-			int index = Random.Range(0, _enemies.Length);
-
-			GameObject g = (GameObject) Instantiate(_enemies[index], transform.position + spawnDelta, Quaternion.identity);
+			for(int i = 0; i < GetMultiplicity(); i++) 
+			{
+				int index = Random.Range(0, _enemies.Length);
+				Vector2 direction = GetRandomVector();
+				Vector3 spawnDelta = new Vector3(direction.x, direction.y, 0.0f) * spawnRadius;
+				Vector3 minDelta = new Vector3(direction.x, direction.y, 0.0f) * minRadius;
+				Vector3 s = new Vector3(0.0f,0.0f,1.0f);
+				GameObject g = (GameObject) Instantiate(_enemies[index], transform.position + spawnDelta, Quaternion.LookRotation(s,-direction));
+				g.transform.parent = transform;
+				Enemy e = g.GetComponent<Enemy>();
+				e.StartMovement(transform.position + minDelta);
+			}
 			/*Debug.Log("evil sprites length.. " + _evilSprites.Length);
 			SpriteRenderer randomSprite = _evilSprites[Random.Range(0, _evilSprites.Length)];
 			((SpriteRenderer)enemy.renderer).sprite = randomSprite.sprite;
 			enemy.renderer.material = randomSprite.material;*/
 
-			g.transform.parent = transform;
-			Enemy e = g.GetComponent<Enemy>();
-			e.StartMovement(transform.position + minDelta);
 
 			yield return new WaitForSeconds(currentAverageTime);
 			currentAverageTime = averageInterSpawnTime*difficultyCurve.Evaluate(Mathf.Min(timeSinceBeginning / timeToMaximumDifficulty,1.0f)); 
@@ -72,11 +75,6 @@ public class EnemySpawn : MonoBehaviour
 		}
 	}
 
-	void Update()
-	{
-
-	}
-
 	Vector2 GetRandomVector()
 	{
 		Vector2 vec  = new Vector2(Random.Range(-1.0f,1.0f), Random.Range(-1.0f,1.0f));
@@ -88,6 +86,17 @@ public class EnemySpawn : MonoBehaviour
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position,1.0f);
+	}
+
+	private int GetMultiplicity()
+	{
+		float n = Random.Range(0.0f,1.0f);
+		float m = enemyMultiplicityChanceCurve.Evaluate(Mathf.Min(timeSinceBeginning / timeToMaximumDifficulty,1.0f)); 
+		if(n < m)
+		{
+			return 2;
+		}
+		return 1;
 	}
 
 /*	IEnumerator Spawn()
