@@ -4,7 +4,10 @@ using System.Collections;
 public class EnemySpawn : MonoBehaviour 
 {
 	[SerializeField]
-	GameObject enemy;
+	private GameObject[] _enemies;
+
+	//[SerializeField]
+	//private GameObject _evilSpriteContainer;
 
 	public AnimationCurve difficultyCurve;
 
@@ -18,6 +21,15 @@ public class EnemySpawn : MonoBehaviour
 	public float timeToMaximumDifficulty = 30.0f;
 
 	private float timeSinceBeginning = 0.0f;
+
+	private SpriteRenderer[] _evilSprites;
+
+
+
+	void Awake()
+	{
+		//_evilSprites = _evilSpriteContainer.GetComponentsInChildren<SpriteRenderer> ();
+	}
 
 	IEnumerator Start()
 	{
@@ -34,7 +46,14 @@ public class EnemySpawn : MonoBehaviour
 			Vector3 spawnDelta = new Vector3(direction.x, direction.y, 0.0f) * spawnRadius;
 			Vector3 minDelta = new Vector3(direction.x, direction.y, 0.0f) * minRadius;
 
-			GameObject g = (GameObject) Instantiate(enemy, transform.position + spawnDelta, Quaternion.identity);
+			int index = Random.Range(0, _enemies.Length);
+
+			GameObject g = (GameObject) Instantiate(_enemies[index], transform.position + spawnDelta, Quaternion.identity);
+			/*Debug.Log("evil sprites length.. " + _evilSprites.Length);
+			SpriteRenderer randomSprite = _evilSprites[Random.Range(0, _evilSprites.Length)];
+			((SpriteRenderer)enemy.renderer).sprite = randomSprite.sprite;
+			enemy.renderer.material = randomSprite.material;*/
+
 			g.transform.parent = transform;
 			Enemy e = g.GetComponent<Enemy>();
 			e.StartMovement(transform.position + minDelta);
