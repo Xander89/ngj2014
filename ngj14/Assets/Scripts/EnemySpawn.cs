@@ -40,7 +40,7 @@ public class EnemySpawn : MonoBehaviour
 			e.StartMovement(transform.position + minDelta);
 
 			yield return new WaitForSeconds(currentAverageTime);
-			currentAverageTime = difficultyCurve.Evaluate(Mathf.Min(timeSinceBeginning / timeToMaximumDifficulty,1.0f)); 
+			currentAverageTime = averageInterSpawnTime*difficultyCurve.Evaluate(Mathf.Min(timeSinceBeginning / timeToMaximumDifficulty,1.0f)); 
 		}
 	}
 
