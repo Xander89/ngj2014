@@ -1,9 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Warning.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Enemy.cs" Line="55" Column="1" />
+      <File FileName="Assets\Scripts\Warning.cs" Line="37" Column="45" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\Bilal\Documents\GitHub\ngj2014\ngj14\Assets\Warning.cs" line="21" />
+      <Breakpoint file="C:\Users\Bilal\Documents\GitHub\ngj2014\ngj14\Assets\Warning.cs" line="56" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

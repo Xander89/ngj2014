@@ -28,15 +28,6 @@ public class Enemy : MonoBehaviour
 	{
 		float time = 0;
 
-		//Show exclamation mark
-		SpriteRenderer ex_mark = transform.FindChild("exclamationmark").GetComponent<SpriteRenderer>();
-		ex_mark.enabled = false;
-		ex_mark.transform.position = transform.position;
-		ex_mark.enabled = true;
-		yield return new WaitForSeconds(exclamationDuration);
-		ex_mark.enabled = false;
-
-
 		//Move forward
 		while (time < duration)
 		{
