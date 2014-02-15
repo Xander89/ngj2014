@@ -5,8 +5,9 @@ public class Enemy : MonoBehaviour
 {
 	Vector3 source;
 	Vector3 sink;
-	public float duration = 5.0f;
 	public float exclamationDuration = 1.0f;
+	public float minimumTimeInScreen = 2.0f;
+	public float maximumTimeInScreen = 5.0f;
 
 	void Start()
 	{
@@ -27,7 +28,7 @@ public class Enemy : MonoBehaviour
 	IEnumerator Move()
 	{
 		float time = 0;
-
+		float duration = Random.Range(minimumTimeInScreen,maximumTimeInScreen);
 		//Move forward
 		while (time < duration)
 		{
