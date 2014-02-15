@@ -10,15 +10,15 @@ public class EyeballAnimation : MonoBehaviour
 	void Start () 
 	{
 		hand = GameObject.FindGameObjectWithTag("Player");
+		guiCamera = GameObject.FindGameObjectWithTag("GUIRCamera");
 	}
 
 	void Update () 
 	{
 		//transform.LookAt(hand.transform);
-		
-		if (transform.eulerAngles.x > 90)
-			transform.eulerAngles = new Vector3(transform.eulerAngles.x, 90f, 90f);
-		else
-			transform.eulerAngles = new Vector3(transform.eulerAngles.x, -90f, -90f);
+		Vector3 screen = Camera.main.WorldToScreenPoint(hand.transform.position);
+		screen = guiCamera.GetComponent<Camera>().ScreenToWorldPoint(screen);
+		Vector3 v = new Vector3(screen.x - transform.position.x, screen.y - transform.position.y, 0f);
+		transform.rotation = Quaternion.LookRotation(v, new Vector3(0f, 0f, 1f));
 	}
 }
