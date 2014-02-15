@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\EyeballAnimation.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\SyboGames\hns-dadiu5\Unity\Assets\Scripts\Utils\BendController.cs">
     <Files>
-      <File FileName="Assets\EyeballAnimation.cs" Line="17" Column="3" />
-      <File FileName="Assets\Scripts\EnemySpawn.cs" Line="43" Column="14" />
+      <File FileName="Assets\EyeballAnimation.cs" Line="1" Column="1" />
+      <File FileName="Assets\EyeballAnimation.cs" Line="22" Column="76" />
+      <File FileName="Assets\Scripts\EnemySpawn.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Warning.cs" Line="33" Column="3" />
+      <File FileName="Assets\Scripts\Warning.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\SyboGames\hns-dadiu5\Unity\Assets\Scripts\Utils\BendController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
