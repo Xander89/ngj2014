@@ -15,7 +15,7 @@ public class EyeballAnimation : MonoBehaviour
 	void Update () 
 	{
 		//transform.LookAt(hand.transform);
-		transform.rotation = 
+		
 		if (transform.eulerAngles.x > 90)
 			transform.eulerAngles = new Vector3(transform.eulerAngles.x, 90f, 90f);
 		else
