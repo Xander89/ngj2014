@@ -3,10 +3,13 @@ using System.Collections;
 
 public class GameStateManagerController : MonoBehaviour {
 	
-
+	public bool clear = false;
 	void Start()
 	{
-		//PlayerPrefs.DeleteAll();
+		if(clear)
+		{
+			PlayerPrefs.DeleteAll();
+		}
 		if (PlayerPrefs.GetInt("showMenu", 1) == 1) {
 
 			GameStateManager.EnterTheFirstState (new MainMenuState ());
