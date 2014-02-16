@@ -13,6 +13,7 @@ public class IntroController : MonoBehaviour {
 	public Hand hand;
 	public SpriteRenderer hint;
 //	public AudioClip game_music;
+	private bool ready_To_Start = false;
 
 	// Use this for initialization
 	public IEnumerator StartIntro () {
@@ -29,6 +30,7 @@ public class IntroController : MonoBehaviour {
 		yield return new WaitForSeconds(3.0f);
 		ambient.clip = menu_music;
 		ambient.Play();
+		ready_To_Start = true;
 	}
 
 	IEnumerator afterPress()
@@ -55,9 +57,9 @@ public class IntroController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.Space))
+		if(ready_To_Start && Input.GetKeyDown(KeyCode.Space))
 		{
-
+			ready_To_Start = false;
 			StartCoroutine(afterPress());
 		}
 	}

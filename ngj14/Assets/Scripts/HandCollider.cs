@@ -47,7 +47,7 @@ public class HandCollider : MonoBehaviour {
 		{
 			PlayerPrefs.SetInt("showMenu", 0);
 			Application.LoadLevel (0);
-
+			end = false;
 		}
 	}
 }
