@@ -274,7 +274,7 @@ public class OVRPlayerController : OVRComponent
 		// Rotate
 		float deltaRotation = 0.0f;
 		if(AllowMouseRotation == false)
-			deltaRotation = Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
+			deltaRotation = Input.GetAxis("Mouse X") * 1000; //* rotateInfluence * 3.25f;
 			
 		float filteredDeltaRotation = (sDeltaRotationOld * 0.0f) + (deltaRotation * 1.0f);
 		YRotation += filteredDeltaRotation;

@@ -40,7 +40,7 @@ public class OVRCameraController : OVRComponent
 {		
 	// PRIVATE MEMBERS
 	private bool   UpdateCamerasDirtyFlag = false;	
-	private Camera CameraLeft, CameraRight = null;
+	public Camera CameraLeft, CameraRight = null;
 	private float  LensOffsetLeft, LensOffsetRight = 0.0f;  // normalized screen space
 	private float  AspectRatio = 1.0f;						
 	private float  DistK0, DistK1, DistK2, DistK3 = 0.0f; 	// lens distortion parameters
