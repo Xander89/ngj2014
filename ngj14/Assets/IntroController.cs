@@ -7,6 +7,9 @@ public class IntroController : MonoBehaviour {
 	public MoveToPoint secondMoving;
 	public SpriteFade bg;
 	public SpriteFade girl;
+	public SpriteFade bgNarrow;
+	public SpriteFade peepingEyes;
+	public SpriteFade pressSpace;
 	public SfxManager manager;
 	public AudioSource ambient;
 	public AudioClip menu_music;
@@ -20,15 +23,19 @@ public class IntroController : MonoBehaviour {
 		yield return new WaitForSeconds(2.0f);
 		firstMoving.StartCoroutine(firstMoving.StartMovement());
 		yield return new WaitForSeconds(2.0f);
+		girl.StartFading(0.0f);
+		yield return new WaitForSeconds(2.0f);
 		secondMoving.StartCoroutine(secondMoving.StartMovement());
 		yield return new WaitForSeconds(2.0f);
 		bg.StartFading(0.0f);
-		girl.StartFading(1.0f);
+		peepingEyes.StartFading(1f);
 		yield return new WaitForSeconds(2.0f);
 //		Destroy (bg.gameObject);
+		pressSpace.StartFading(1f);
 		manager.PlaySfx("girl_scream");
+
 		yield return new WaitForSeconds(3.0f);
-		ambient.clip = menu_music;
+			ambient.clip = menu_music;
 		ambient.Play();
 		ready_To_Start = true;
 	}
@@ -39,6 +46,9 @@ public class IntroController : MonoBehaviour {
 		GameStateManager.SwitchState(new PlayState());
 		StartCoroutine(ShowHint());
 		girl.StartFading(0.0f);
+		pressSpace.StartFading(0f);
+		peepingEyes.StartFading(0f);
+		bgNarrow.StartFading(0f);
 		firstMoving.gameObject.GetComponent<SpriteFade>().StartFading(0.0f);
 		secondMoving.gameObject.GetComponent<SpriteFade>().StartFading(0.0f);
 
