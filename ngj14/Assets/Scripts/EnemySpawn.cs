@@ -68,6 +68,7 @@ public class EnemySpawn : MonoBehaviour
 				Vector3 s = new Vector3(0.0f,0.0f,1.0f);
 				GameObject g = (GameObject) Instantiate(_enemies[index], transform.position + spawnDelta, Quaternion.LookRotation(s,-direction));
 				GameObject em = (GameObject) Instantiate(exclamationmark, transform.position + spawnDelta, Quaternion.identity);
+				sfx_manager.PlaySfx("warning");
 				StartCoroutine(SpawnMark(em));
 				g.transform.parent = transform;
 				Enemy e = g.GetComponent<Enemy>();

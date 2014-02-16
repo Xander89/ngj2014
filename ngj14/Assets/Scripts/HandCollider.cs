@@ -7,9 +7,11 @@ public class HandCollider : MonoBehaviour {
 	private GameObject _gameOver;
 
 	private GameObject _score;
+	private SfxManager manager;
 
 	void Start()
 	{
+		manager = (SfxManager)FindObjectOfType(typeof(SfxManager));
 		_score = GameObject.Find ("Score");
 	}
 
@@ -27,9 +29,10 @@ public class HandCollider : MonoBehaviour {
 	{
 		_score.GetComponent<Score> ().enabled = false;
 		_score.GetComponent<GUIText> ().enabled = false;
-
-		GameObject g = (GameObject) Instantiate(_gameOver, transform.position - new Vector3(-3.5f, 0.5f, 0f) , Quaternion.identity);
+		GameObject g = (GameObject) Instantiate(_gameOver, transform.position - new Vector3(0.0f, 0.5f, 0f) , Quaternion.identity);
 		yield return new WaitForSeconds(0.5f);
+		manager.PlaySfx("GameOver");
+
 		g.GetComponent<SpriteFade>().StartFading(1);
 		yield return new WaitForSeconds(3f);
 		//GameStateManager.SwitchState(new DeathState());
