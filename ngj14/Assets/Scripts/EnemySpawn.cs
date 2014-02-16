@@ -68,13 +68,14 @@ public class EnemySpawn : MonoBehaviour
 				Vector3 s = new Vector3(0.0f,0.0f,1.0f);
 				GameObject g = (GameObject) Instantiate(_enemies[index], transform.position + spawnDelta, Quaternion.LookRotation(s,-direction));
 				GameObject em = (GameObject) Instantiate(exclamationmark, transform.position + spawnDelta, Quaternion.identity);
+				sfx_manager.PlaySfx("warning");
 				StartCoroutine(SpawnMark(em));
 				g.transform.parent = transform;
 				Enemy e = g.GetComponent<Enemy>();
 				e.StartMovement(transform.position + minDelta);
 				Debug.Log ("_enemySounds.Length " + _enemySounds.Length);
 				Debug.Log ("STRING " +  _enemySounds[sound_index].ToString());
-				sfx_manager.PlaySfx(_enemySounds[sound_index]);
+				StartCoroutine(DelaySound(_enemySounds[sound_index]));
 			}
 			/*Debug.Log("evil sprites length.. " + _evilSprites.Length);
 			SpriteRenderer randomSprite = _evilSprites[Random.Range(0, _evilSprites.Length)];
@@ -86,6 +87,12 @@ public class EnemySpawn : MonoBehaviour
 			currentAverageTime = averageInterSpawnTime*difficultyCurve.Evaluate(Mathf.Min(timeSinceBeginning / timeToMaximumDifficulty,1.0f)); 
 		}
 		stopped = false;
+	}
+
+	IEnumerator DelaySound(string sound)
+	{
+		yield return new WaitForSeconds(1.5f);
+		sfx_manager.PlaySfx(sound);
 	}
 
 	public void Stop()
