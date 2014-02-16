@@ -12,6 +12,8 @@ public class EnemySpawn : MonoBehaviour
 	[SerializeField]
 	private string[] _enemySounds;
 
+	public GameObject exclamationmark;
+
 	//[SerializeField]
 	//private GameObject _evilSpriteContainer;
 
@@ -31,7 +33,12 @@ public class EnemySpawn : MonoBehaviour
 
 	private SpriteRenderer[] _evilSprites;
 
+	public float borderX = 20f;
+	public float borderY = 20f;
+	public float exclamationMarkWaitTime = 1f;
 
+	public GameObject lowerLeft;
+	public GameObject upperRight;
 
 	void Awake()
 	{
@@ -58,6 +65,8 @@ public class EnemySpawn : MonoBehaviour
 				Vector3 minDelta = new Vector3(direction.x, direction.y, 0.0f) * minRadius;
 				Vector3 s = new Vector3(0.0f,0.0f,1.0f);
 				GameObject g = (GameObject) Instantiate(_enemies[index], transform.position + spawnDelta, Quaternion.LookRotation(s,-direction));
+				GameObject em = (GameObject) Instantiate(exclamationmark, transform.position + spawnDelta, Quaternion.identity);
+				StartCoroutine(SpawnMark(em));
 				g.transform.parent = transform;
 				Enemy e = g.GetComponent<Enemy>();
 				e.StartMovement(transform.position + minDelta);
@@ -108,6 +117,19 @@ public class EnemySpawn : MonoBehaviour
 		}
 		return 1;
 	}
+
+	IEnumerator SpawnMark(GameObject gg)
+	{
+		SpriteRenderer sprite = gg.GetComponent<SpriteRenderer>();
+		float positionZ = sprite.transform.position.z;
+		float positionX = Mathf.Clamp(sprite.transform.position.x,lowerLeft.transform.position.x,upperRight.transform.position.x);
+		float positionY = Mathf.Clamp(sprite.transform.position.y,lowerLeft.transform.position.y,upperRight.transform.position.y);
+		sprite.transform.position = new Vector3(positionX,positionY,positionZ);
+		sprite.enabled = true;
+		yield return new WaitForSeconds(exclamationMarkWaitTime);
+		sprite.enabled = false;
+	}
+
 
 
 /*	IEnumerator Spawn()

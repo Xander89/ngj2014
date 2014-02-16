@@ -8,7 +8,10 @@ public class HandCollider : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
-		StartCoroutine(Death());
+		if(other != null && other.transform != null && other.transform.GetComponent<Enemy>() != null)
+		{
+			StartCoroutine(Death());
+		}
 	}
 
 	IEnumerator Death()

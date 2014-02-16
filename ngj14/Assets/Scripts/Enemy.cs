@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
 		float time = 0;
 		float duration = Random.Range(minimumTimeInScreen,maximumTimeInScreen);
 		//Move forward
+
 		while (time < duration)
 		{
 			transform.position = Vector3.Lerp(transform.position, sink, time / duration / 10f);
