@@ -10,6 +10,7 @@ public class HandCollider : MonoBehaviour {
 	private SfxManager manager;
 
 	private bool end = false;
+	private bool died = false;
 
 	void Start()
 	{
@@ -28,17 +29,25 @@ public class HandCollider : MonoBehaviour {
 	}
 
 	IEnumerator Death()
-	{
-		_score.GetComponent<Score> ().enabled = false;
-		_score.GetComponent<GUIText> ().enabled = false;
-		GameObject g = (GameObject) Instantiate(_gameOver, transform.position  , Quaternion.identity);
-		yield return new WaitForSeconds(0.5f);
-		manager.PlaySfx("GameOver");
+	{	
+		if(died) 
+		{
+			yield return null;
+		} 
+		else
+		{
+			died = true;
+			_score.GetComponent<Score> ().enabled = false;
+			_score.GetComponent<GUIText> ().enabled = false;
+			GameObject g = (GameObject) Instantiate(_gameOver, transform.position  , Quaternion.identity);
+			yield return new WaitForSeconds(0.5f);
+			manager.PlaySfx("GameOver");
 
-		g.GetComponent<SpriteFade>().StartFading(1);
-		yield return new WaitForSeconds(3f);
-		//GameStateManager.SwitchState(new DeathState());
-		end = true;
+			g.GetComponent<SpriteFade>().StartFading(1);
+			yield return new WaitForSeconds(3f);
+			//GameStateManager.SwitchState(new DeathState());
+			end = true;
+		}
 	}
 
 	void Update()
