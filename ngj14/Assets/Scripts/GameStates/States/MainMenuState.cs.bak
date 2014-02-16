@@ -3,8 +3,12 @@ using System.Collections;
 
 public class MainMenuState : GameState {
 
+<<<<<<< HEAD
+	private GameObject _enemies;
 	private GameObject _score;
 
+=======
+>>>>>>> ed3c08f91325a38919a6a9a6d9ee1c1ff01ed4b1
 	public override string StateName
 	{
 		get
@@ -15,13 +19,17 @@ public class MainMenuState : GameState {
 	
 	public override void EnterState()
 	{
-		IntroController c = ((GameStateManager)FindObjectOfType(typeof(GameStateManager))).intro.GetComponent<IntroController>();
-		c.gameObject.SetActive(true);
-		c.StartCoroutine(c.StartIntro());
+<<<<<<< HEAD
 		Debug.Log("Enter Main Menu State");
+		_enemies = GameObject.Find ("Enemies");
 		_score = GameObject.Find ("Score");
 		_score.GetComponent<Score> ().enabled = false;
 		_score.GetComponent<GUIText> ().enabled = false;
+=======
+		IntroController c = ((GameStateManager)FindObjectOfType(typeof(GameStateManager))).intro.GetComponent<IntroController>();
+		c.gameObject.SetActive(true);
+		c.StartCoroutine(c.StartIntro());
+>>>>>>> ed3c08f91325a38919a6a9a6d9ee1c1ff01ed4b1
 		//_enemies.SetActive(false);
 	}
 	
@@ -31,6 +39,12 @@ public class MainMenuState : GameState {
 	}
 	public override void ExitState()
 	{
+		//_enemies.SetActive(true);
+<<<<<<< HEAD
+		Debug.Log ("enemy spawner.. " + _enemies.GetComponent<EnemySpawn>());
+
 		Debug.Log("Exit Main Menu State");
+=======
+>>>>>>> ed3c08f91325a38919a6a9a6d9ee1c1ff01ed4b1
 	}
 }

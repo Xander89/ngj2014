@@ -4,6 +4,9 @@ using System.Collections;
 public class GameStateManager : MonoBehaviour {
 
 	private static GameState _activeState;
+
+	public GameObject intro;
+
 	public static GameState ActiveState
 	{
 		get

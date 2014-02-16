@@ -13,7 +13,7 @@ public class IntroController : MonoBehaviour {
 	public AudioClip game_music;
 
 	// Use this for initialization
-	IEnumerator Start () {
+	public IEnumerator StartIntro () {
 		yield return new WaitForSeconds(2.0f);
 		firstMoving.StartCoroutine(firstMoving.StartMovement());
 		yield return new WaitForSeconds(2.0f);
