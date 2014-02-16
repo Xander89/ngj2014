@@ -4,14 +4,10 @@ using System.Collections;
 public class Hand : MonoBehaviour {
 
 
-	private Renderer[] _renderers;
+	public Renderer _renderer;
 	private bool _restart = false;
 	private float time = 0;
 
-	void Awake()
-	{
-		_renderers = gameObject.GetComponentsInChildren<Renderer> ();
-	}
 
 	void Update()
 	{
@@ -20,14 +16,12 @@ public class Hand : MonoBehaviour {
 			return;
 
 		if (!_restart) {
-			foreach (Renderer r in _renderers) {
-				if (!r.isVisible) {
-						Debug.Log ("fade it");
-						Fade.FadeOut ();
-						_restart = true;
-						time = 0;
-						break;
-				}
+			if (!_renderer.isVisible) {
+					Debug.Log ("fade it");
+				Fade.FadeOut ();
+				_restart = true;
+				time = 0;
+				
 			}
 		}
 		else
