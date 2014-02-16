@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayState : GameState {
 
 	private GameObject _enemies;
+	private GameObject _score;
 
 	public override string StateName
 	{
@@ -19,7 +20,11 @@ public class PlayState : GameState {
 		_enemies = GameObject.Find ("Enemies");
 		EnemySpawn es = _enemies.GetComponent<EnemySpawn> ();
 		es.StartCoroutine(es.Engage());
-
+		Score._elapsedTime = 0;
+		_score = GameObject.Find ("Score");
+		_score.GetComponent<Score> ().enabled = true;
+		_score.GetComponent<GUIText> ().enabled = true;
+	
 	}
 	
 	public override void StateUpdate()
