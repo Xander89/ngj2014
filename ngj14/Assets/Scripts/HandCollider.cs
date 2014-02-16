@@ -23,6 +23,7 @@ public class HandCollider : MonoBehaviour {
 		g.GetComponent<SpriteFade>().StartFading(1);
 		yield return new WaitForSeconds(3f);
 		//GameStateManager.SwitchState(new DeathState());
+		PlayerPrefs.SetInt("showMenu", 0);
 		Application.LoadLevel (0);
 
 	}

@@ -17,6 +17,15 @@ public class SfxManager : MonoBehaviour {
 	private List<ActiveSource> sources;
 //	private Dictionary<string, AudioClip> clips;
 
+	public AudioSource ambient;
+	public AudioClip main_ambient;
+
+	public void PlayAmbientGame()
+	{
+		ambient.clip = main_ambient;
+		ambient.Play();
+	}
+
 	// Use this for initialization
 	void Start () {
 		AudioSource[] o_sources = GetComponentsInChildren<AudioSource>();

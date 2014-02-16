@@ -10,7 +10,7 @@ public class IntroController : MonoBehaviour {
 	public SfxManager manager;
 	public AudioSource ambient;
 	public AudioClip menu_music;
-	public AudioClip game_music;
+//	public AudioClip game_music;
 
 	// Use this for initialization
 	public IEnumerator StartIntro () {
@@ -34,8 +34,6 @@ public class IntroController : MonoBehaviour {
 
 		GameStateManager.SwitchState(new PlayState());
 
-		ambient.clip = game_music;
-		ambient.Play();
 		girl.StartFading(0.0f);
 		firstMoving.gameObject.GetComponent<SpriteFade>().StartFading(0.0f);
 		secondMoving.gameObject.GetComponent<SpriteFade>().StartFading(0.0f);

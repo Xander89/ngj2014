@@ -19,7 +19,8 @@ public class PlayState : GameState {
 		_enemies = GameObject.Find ("Enemies");
 		EnemySpawn es = _enemies.GetComponent<EnemySpawn> ();
 		es.StartCoroutine(es.Engage());
-
+		SfxManager sfx = (SfxManager)FindObjectOfType(typeof(SfxManager));
+		sfx.PlayAmbientGame();
 	}
 	
 	public override void StateUpdate()
