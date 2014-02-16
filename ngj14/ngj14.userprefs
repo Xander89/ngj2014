@@ -1,19 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\IntroController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HandCollider.cs">
     <Files>
-      <File FileName="Assets\IntroController.cs" Line="34" Column="3" />
-      <File FileName="Assets\Scripts\Hand.cs" Line="34" Column="1" />
-      <File FileName="Assets\Scripts\LevelGenerator.cs" Line="93" Column="79" />
-      <File FileName="Assets\Scripts\Score.cs" Line="13" Column="54" />
-      <File FileName="Assets\Scripts\GameStates\States\MainMenuState.cs" Line="29" Column="16" />
-      <File FileName="Assets\Scripts\GameStates\GameStateManagerController.cs" Line="5" Column="2" />
+      <File FileName="Assets\Scripts\HandCollider.cs" Line="37" Column="29" />
+      <File FileName="Assets\Scripts\LevelGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\GFX\Bend.cginc" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Hand.cs" Line="79" Column="24" />
+      <File FileName="Assets\Scripts\SpriteFade.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameStates\States\MainMenuState.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameStates\GameState.cs" Line="1" Column="1" />
+      <File FileName="Assets\IntroController.cs" Line="51" Column="36" />
+      <File FileName="Assets\Scripts\EnemySpawn.cs" Line="93" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\Bilal\Documents\GitHub\ngj2014\ngj14\Assets\Warning.cs" line="56" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

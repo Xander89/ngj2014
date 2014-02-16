@@ -48,7 +48,7 @@ public class IntroController : MonoBehaviour {
 	{
 		SpriteFade fade = hint.GetComponent<SpriteFade>();
 		fade.StartFading(1f);
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(3f);
 		fade.StartFading(0f);
 
 	}
