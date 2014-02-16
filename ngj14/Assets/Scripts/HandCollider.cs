@@ -14,6 +14,7 @@ public class HandCollider : MonoBehaviour {
 	IEnumerator Death()
 	{
 		GameObject g = (GameObject) Instantiate(_gameOver, transform.position - new Vector3(-3.5f, 0.5f, 0f) , Quaternion.identity);
+		yield return new WaitForSeconds(0.5f);
 		g.GetComponent<SpriteFade>().StartFading(1);
 		yield return new WaitForSeconds(3f);
 		Application.LoadLevel (0);
