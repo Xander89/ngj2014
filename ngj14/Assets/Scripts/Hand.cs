@@ -9,6 +9,7 @@ public class Hand : MonoBehaviour {
 	private GUIText _message;
 	private bool _restart = false;
 	private float time = 0;
+	public bool CanBeKilled = false;
 
 	void Start()
 	{
@@ -46,13 +47,18 @@ public class Hand : MonoBehaviour {
 		else if (_restart && time > 3 && time < 5)
 		{
 			Debug.Log ("fade it");
-			Fade.FadeOut ();
+			if (CanBeKilled)
+				Fade.FadeOut ();
 			return;
 		}
 			
 		else
 		{
-			Application.LoadLevel(0);
+			if (CanBeKilled)
+			{
+				PlayerPrefs.SetInt("showMenu", 0);
+				Application.LoadLevel(0);
+			}
 		}
 	}
 

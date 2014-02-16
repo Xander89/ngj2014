@@ -9,6 +9,7 @@ public class MainMenuState : GameState {
 	{
 		get
 		{
+			Debug.Log ("asdsad" + this.GetType().ToString());
 			return this.GetType().ToString();
 		}
 	}

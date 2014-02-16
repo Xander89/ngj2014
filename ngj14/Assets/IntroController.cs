@@ -10,6 +10,7 @@ public class IntroController : MonoBehaviour {
 	public SfxManager manager;
 	public AudioSource ambient;
 	public AudioClip menu_music;
+	public Hand hand;
 //	public AudioClip game_music;
 
 	// Use this for initialization
@@ -31,7 +32,7 @@ public class IntroController : MonoBehaviour {
 
 	IEnumerator afterPress()
 	{
-
+		hand.CanBeKilled = true;
 		GameStateManager.SwitchState(new PlayState());
 
 		girl.StartFading(0.0f);
@@ -45,6 +46,7 @@ public class IntroController : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
+
 			StartCoroutine(afterPress());
 		}
 	}
