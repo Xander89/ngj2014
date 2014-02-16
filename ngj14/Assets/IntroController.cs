@@ -11,6 +11,7 @@ public class IntroController : MonoBehaviour {
 	public AudioSource ambient;
 	public AudioClip menu_music;
 	public Hand hand;
+	public SpriteRenderer hint;
 //	public AudioClip game_music;
 
 	// Use this for initialization
@@ -34,12 +35,22 @@ public class IntroController : MonoBehaviour {
 	{
 		hand.CanBeKilled = true;
 		GameStateManager.SwitchState(new PlayState());
-
+		StartCoroutine(ShowHint());
 		girl.StartFading(0.0f);
 		firstMoving.gameObject.GetComponent<SpriteFade>().StartFading(0.0f);
 		secondMoving.gameObject.GetComponent<SpriteFade>().StartFading(0.0f);
 
 		yield return null;
+
+	}
+
+	IEnumerator ShowHint()
+	{
+		SpriteFade fade = hint.GetComponent<SpriteFade>();
+		fade.StartFading(1f);
+		yield return new WaitForSeconds(1f);
+		fade.StartFading(0f);
+
 	}
 
 	// Update is called once per frame
