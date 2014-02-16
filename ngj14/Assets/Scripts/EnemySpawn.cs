@@ -40,6 +40,8 @@ public class EnemySpawn : MonoBehaviour
 	public GameObject lowerLeft;
 	public GameObject upperRight;
 
+	private bool stopped = false;
+
 	void Awake()
 	{
 		//_evilSprites = _evilSpriteContainer.GetComponentsInChildren<SpriteRenderer> ();
@@ -54,7 +56,7 @@ public class EnemySpawn : MonoBehaviour
 		//Spawn
 
 		currentAverageTime = averageInterSpawnTime;
-		while(true)
+		while(!stopped)
 		{
 			for(int i = 0; i < GetMultiplicity(); i++) 
 			{
@@ -83,6 +85,12 @@ public class EnemySpawn : MonoBehaviour
 			yield return new WaitForSeconds(currentAverageTime);
 			currentAverageTime = averageInterSpawnTime*difficultyCurve.Evaluate(Mathf.Min(timeSinceBeginning / timeToMaximumDifficulty,1.0f)); 
 		}
+		stopped = false;
+	}
+
+	public void Stop()
+	{
+		stopped = true;
 	}
 
 	IEnumerator updateTime()

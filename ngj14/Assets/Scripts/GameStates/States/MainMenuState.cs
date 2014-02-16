@@ -3,8 +3,6 @@ using System.Collections;
 
 public class MainMenuState : GameState {
 
-	private GameObject _enemies;
-
 	public override string StateName
 	{
 		get
@@ -15,8 +13,9 @@ public class MainMenuState : GameState {
 	
 	public override void EnterState()
 	{
-		Debug.Log("Enter Main Menu State");
-		_enemies = GameObject.Find ("Enemies");
+		IntroController c = ((GameStateManager)FindObjectOfType(typeof(GameStateManager))).intro.GetComponent<IntroController>();
+		c.gameObject.SetActive(true);
+		c.StartCoroutine(c.StartIntro());
 		//_enemies.SetActive(false);
 	}
 	
@@ -27,9 +26,5 @@ public class MainMenuState : GameState {
 	public override void ExitState()
 	{
 		//_enemies.SetActive(true);
-		Debug.Log ("enemy spawner.. " + _enemies.GetComponent<EnemySpawn>());
-		EnemySpawn es = _enemies.GetComponent<EnemySpawn> ();
-		es.StartCoroutine(es.Engage());
-		Debug.Log("Exit Main Menu State");
 	}
 }
