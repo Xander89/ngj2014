@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainMenuState : GameState {
+public class PlayState : GameState {
 
 	private GameObject _enemies;
 
@@ -15,9 +15,11 @@ public class MainMenuState : GameState {
 	
 	public override void EnterState()
 	{
-		Debug.Log("Enter Main Menu State");
+		Debug.Log("Enter Play State");
 		_enemies = GameObject.Find ("Enemies");
-		//_enemies.SetActive(false);
+		EnemySpawn es = _enemies.GetComponent<EnemySpawn> ();
+		es.StartCoroutine(es.Engage());
+
 	}
 	
 	public override void StateUpdate()
@@ -26,10 +28,7 @@ public class MainMenuState : GameState {
 	}
 	public override void ExitState()
 	{
-		//_enemies.SetActive(true);
-		Debug.Log ("enemy spawner.. " + _enemies.GetComponent<EnemySpawn>());
-		EnemySpawn es = _enemies.GetComponent<EnemySpawn> ();
-		es.StartCoroutine(es.Engage());
-		Debug.Log("Exit Main Menu State");
+
+		Debug.Log("Exit Play State");
 	}
 }

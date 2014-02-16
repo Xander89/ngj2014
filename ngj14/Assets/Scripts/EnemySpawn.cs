@@ -45,7 +45,7 @@ public class EnemySpawn : MonoBehaviour
 		//_evilSprites = _evilSpriteContainer.GetComponentsInChildren<SpriteRenderer> ();
 	}
 
-	IEnumerator Start()
+	public IEnumerator Engage()
 	{
 
 		yield return new WaitForSeconds(initTime);

@@ -31,7 +31,10 @@ public class IntroController : MonoBehaviour {
 
 	IEnumerator afterPress()
 	{
-		ambient.clip = menu_music;
+
+		GameStateManager.SwitchState(new PlayState());
+
+		ambient.clip = game_music;
 		ambient.Play();
 		girl.StartFading(0.0f);
 		firstMoving.gameObject.GetComponent<SpriteFade>().StartFading(0.0f);

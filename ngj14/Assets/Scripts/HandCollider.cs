@@ -10,6 +10,8 @@ public class HandCollider : MonoBehaviour {
 	{
 		if(other != null && other.transform != null && other.transform.GetComponent<Enemy>() != null)
 		{
+
+
 			StartCoroutine(Death());
 		}
 	}
@@ -20,6 +22,7 @@ public class HandCollider : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 		g.GetComponent<SpriteFade>().StartFading(1);
 		yield return new WaitForSeconds(3f);
+		//GameStateManager.SwitchState(new DeathState());
 		Application.LoadLevel (0);
 
 	}
