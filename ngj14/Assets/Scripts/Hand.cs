@@ -6,14 +6,15 @@ public class Hand : MonoBehaviour {
 
 	public Renderer _renderer;
 	public SpriteFade red;
-	private GUIText _message;
 	private bool _restart = false;
 	private float time = 0;
 	public bool CanBeKilled = false;
+	public SpriteRenderer hint;
+	private SpriteFade fade;
 
 	void Start()
 	{
-		_message = red.transform.FindChild("message").GetComponent<GUIText>();
+		fade = hint.GetComponent<SpriteFade>();
 	}
 
 	void Update()
@@ -25,7 +26,7 @@ public class Hand : MonoBehaviour {
 			if (_renderer.isVisible)
 			{
 				_restart = false;
-				_message.enabled = false;
+				fade.StartFading(0f);
 				SpriteRenderer redflash = red.GetComponent<SpriteRenderer>();
 				redflash.color = new Color(redflash.color.r, redflash.color.g, redflash.color.b, 0f);
 				red.enabled = false;
@@ -65,7 +66,7 @@ public class Hand : MonoBehaviour {
 	IEnumerator BlinkRed()
 	{
 		red.enabled = true;
-		_message.enabled = true;
+		fade.StartFading(1f);
 		Debug.Log ("DUAHDUAW");
 		red.StartFading(0.8f);
 		yield return new WaitForSeconds(0.8f);
@@ -75,7 +76,7 @@ public class Hand : MonoBehaviour {
 		yield return new WaitForSeconds(0.8f);
 		red.StartFading(0f);
 		Debug.Log ("DUAHDUAW2");
-		_message.enabled = false;
+		fade.StartFading(0f);
 	}
 
 }
