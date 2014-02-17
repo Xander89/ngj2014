@@ -32,10 +32,9 @@ public class GameStateManagerController : MonoBehaviour {
 	
 	void Update()
 	{
-		// if (something)
-		// GameStateManager.SwitchState(new SomeState());
-
-		// can check active state like this:
-		// GameStateManager.ActiveState.StateName.Equals(new SomeState().StateName)
+		// so we can actually quit the game..
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.Quit();
+		}
 	}
 }
