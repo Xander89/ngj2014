@@ -25,7 +25,8 @@ public class PlayState : GameState {
 		Score._elapsedTime = 0;
 		_score = GameObject.Find ("Score");
 		_score.GetComponent<Score> ().enabled = true;
-		_score.GetComponent<GUIText> ().enabled = true;
+		_score.GetComponent<MeshRenderer> ().enabled = true;
+		//_score.GetComponent<GUIText> ().enabled = true;
 	}
 	
 	public override void StateUpdate()

@@ -27,6 +27,10 @@ public class MovePlayer : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject orthoCamController;
+	[SerializeField]
+	private GameObject score;
+
+	public static bool riftEnabled = true;
 
 	void Awake()
 	{
@@ -85,6 +89,14 @@ public class MovePlayer : MonoBehaviour {
 			// remove left ortho camera
 			CameraLeftOrtho.enabled = false;
 			CameraRightOrtho.rect = new Rect(0, 0, 1, 1);
+			CameraRightOrtho.transform.position = new Vector3(0, 0, -17);
+
+			CameraController.LensCorrection = false;
+			CameraController.Chromatic      = false;
+			CameraController.PredictionOn   = false;
+			score.transform.position = new Vector3(3.5f, 3.83f, score.transform.position.z);
+
+			riftEnabled = false;
 		}
 	}
 	

@@ -12,6 +12,11 @@ public class HandCollider : MonoBehaviour {
 	private bool end = false;
 	private bool died = false;
 
+	private Vector3 nonORPos   = new Vector3 (0, 0.0f, -16.5f);
+	private Vector3 nonORScale = new Vector3 (3.2f, 1.3f, 1f);
+	private Vector3 ORPos      = new Vector3 (0, 1.0f, -16.5f);
+	private Vector3 ORScale    = new Vector3 (1f, 1f, 1f);
+
 	void Start()
 	{
 		manager = (SfxManager)FindObjectOfType(typeof(SfxManager));
@@ -37,10 +42,23 @@ public class HandCollider : MonoBehaviour {
 		else
 		{
 			died = true;
-			_score.GetComponent<GUIText> ().text = "Score: " + Score._score;
+			//_score.GetComponent<GUIText> ().text = "Score: " + Score._score;
+			_score.GetComponent<TextMesh>().text = "Score: " + Score._score;
 			_score.GetComponent<Score> ().enabled = false;
 
-			GameObject g = (GameObject) Instantiate(_gameOver, transform.position  , Quaternion.identity);
+			GameObject g;
+
+			if(MovePlayer.riftEnabled)
+			{
+				g = (GameObject) Instantiate(_gameOver, ORPos  , Quaternion.identity);
+				g.transform.localScale = ORScale;
+			}
+			else
+			{
+				g = (GameObject) Instantiate(_gameOver, nonORPos  , Quaternion.identity);
+				g.transform.localScale = nonORScale;
+			}
+			//g.transform.localScale = new Vector3();
 			yield return new WaitForSeconds(0.5f);
 			manager.PlaySfx("GameOver");
 

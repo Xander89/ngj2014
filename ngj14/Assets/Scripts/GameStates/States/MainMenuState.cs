@@ -22,7 +22,8 @@ public class MainMenuState : GameState {
 		Debug.Log("Enter Main Menu State");
 		_score = GameObject.Find ("Score");
 		_score.GetComponent<Score> ().enabled = false;
-		_score.GetComponent<GUIText> ().enabled = false;
+		_score.GetComponent<MeshRenderer>().enabled = false;
+		//_score.GetComponent<GUIText> ().enabled = false;
 		//_enemies.SetActive(false);
 	}
 	
