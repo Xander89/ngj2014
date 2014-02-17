@@ -15,7 +15,7 @@ public class HandCollider : MonoBehaviour {
 	private Vector3 nonORPos   = new Vector3 (0, 0.0f, -16.5f);
 	private Vector3 nonORScale = new Vector3 (3.2f, 1.3f, 1f);
 	private Vector3 ORPos      = new Vector3 (0, 1.0f, -16.5f);
-	private Vector3 ORScale    = new Vector3 (1f, 1f, 1f);
+	private Vector3 ORScale    = new Vector3 (1f, 0.8f, 1f);
 
 	void Start()
 	{
