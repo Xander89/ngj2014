@@ -30,17 +30,19 @@ public class MovePlayer : MonoBehaviour {
 	[SerializeField]
 	private GameObject score;
 
-	public static bool riftEnabled = true;
+	public static bool riftEnabled = false;
 
 	void Awake()
 	{
-		_characterController = GetComponent<CharacterController> ();
+		//_characterController = GetComponent<CharacterController> ();
 		Debug.Log (_characterController);
 	}
 
 	// Use this for initialization
 	void Start () {
+		/*
 		OVRCameraController[] CameraControllers;
+
 		CameraControllers = gameObject.GetComponentsInChildren<OVRCameraController>();
 
 		if(CameraControllers.Length == 0)
@@ -98,11 +100,13 @@ public class MovePlayer : MonoBehaviour {
 
 			riftEnabled = false;
 		}
+		*/
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// rotate camera
+		/*
 		if (AllowMouseRotation == true) {
 		// compute for key rotation
 		float rotateInfluence = Time.deltaTime * RotationAmount * RotationScaleMultiplier;
@@ -129,8 +133,9 @@ public class MovePlayer : MonoBehaviour {
 		}
 		//transform.Rotate(new Vector3(0, YRotation, 0));
 		}
+		*/
 		// move player
-		_characterController.Move(new Vector3(0, 0, movementSpeed) * Time.deltaTime);
+		transform.Translate(new Vector3(0, 0, movementSpeed) * Time.deltaTime);
 	}
 
 	// CheckIfRiftPresent

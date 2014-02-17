@@ -12,10 +12,10 @@ public class HandCollider : MonoBehaviour {
 	private bool end = false;
 	private bool died = false;
 
-	private Vector3 nonORPos   = new Vector3 (0, 0.0f, -16.5f);
+	private Vector3 nonORPos   = new Vector3 (1.2f, 1.2f, -16.5f);
 	private Vector3 nonORScale = new Vector3 (3.2f, 1.3f, 1f);
-	private Vector3 ORPos      = new Vector3 (0, 1.0f, -16.5f);
-	private Vector3 ORScale    = new Vector3 (1f, 0.8f, 1f);
+	private Vector3 ORPos      = new Vector3 (1.2f, 1.2f, -16.5f);
+	private Vector3 ORScale    = new Vector3 (1.2f, 1.2f, -16.5f);
 
 	void Start()
 	{
@@ -51,16 +51,13 @@ public class HandCollider : MonoBehaviour {
 			if(MovePlayer.riftEnabled)
 			{
 				g = (GameObject) Instantiate(_gameOver, ORPos  , Quaternion.identity);
-				g.transform.localScale = ORScale;
-				_score.transform.position = new Vector3(_score.transform.position.x,
-				                                        _score.transform.position.y - 2.5f,
-				                                        _score.transform.position.z);
+				//g.transform.localScale = ORScale;
 
 			}
 			else
 			{
 				g = (GameObject) Instantiate(_gameOver, nonORPos  , Quaternion.identity);
-				g.transform.localScale = nonORScale;
+				//g.transform.localScale = nonORScale;
 			}
 			//g.transform.localScale = new Vector3();
 			yield return new WaitForSeconds(0.5f);
