@@ -24,6 +24,11 @@ public class GameStateManagerController : MonoBehaviour {
 		//else
 			//GameStateManager.EnterTheFirstState(new PlayState());
 	}
+
+	void OnApplicationQuit(){
+		
+		PlayerPrefs.DeleteAll();
+	}
 	
 	void Update()
 	{
