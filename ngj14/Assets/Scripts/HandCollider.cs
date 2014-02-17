@@ -52,6 +52,10 @@ public class HandCollider : MonoBehaviour {
 			{
 				g = (GameObject) Instantiate(_gameOver, ORPos  , Quaternion.identity);
 				g.transform.localScale = ORScale;
+				_score.transform.position = new Vector3(_score.transform.position.x,
+				                                        _score.transform.position.y - 2.5f,
+				                                        _score.transform.position.z);
+
 			}
 			else
 			{
