@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections;
 
 
 // Very simple smooth mouselook modifier for the MainCamera in Unity
@@ -13,13 +13,23 @@
 public class MouseLook : MonoBehaviour
 	
 {
-	
+	public float accelerometerSensibility = 0.25f;	
 	Vector2 _mouseAbsolute;
 	
 	Vector2 _smoothMouse;
 	
+	private float AccelerometerUpdateInterval = 1.0f / 60.0f;
+	private float LowPassKernelWidthInSeconds = 1.0f;
 	
-	
+	private float LowPassFilterFactor; 
+	private Vector3 lowPassValue = Vector3.zero;
+
+	Vector3 LowPassFilterAccelerometer() {
+		lowPassValue = Vector3.Lerp(lowPassValue, Input.acceleration, LowPassFilterFactor);
+		return lowPassValue;
+	}
+
+
 	public Vector2 clampInDegrees = new Vector2(360, 180);
 	
 	public bool lockCursor;
@@ -42,24 +52,39 @@ public class MouseLook : MonoBehaviour
 	
 	
 	
-	void Start()
-		
+	IEnumerator Start()	
 	{
-		
+		lowPassValue = Input.acceleration;
 		// Set target direction to the camera's initial orientation.
 		
 		targetDirection = transform.localRotation.eulerAngles;
-		
+		LowPassFilterFactor = AccelerometerUpdateInterval / LowPassKernelWidthInSeconds; // tweakable
+
 		
 		
 		// Set target direction for the character body to its inital state.
 		
 		if (characterBody) targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
-		oldpos = Input.mousePosition;
 
+#if ACCELEROMETER
+		for(int i = 0; i < 20; i++)
+		{
+			ordir += LowPassFilterAccelerometer();
+			yield return null;
+		}
+		ordir =ordir.normalized;
+#endif
+
+		oldpos = Input.mousePosition;
+		yield return null;
 	}
-	
+
+	#if ACCELEROMETER
+	Vector3 ordir;
+	#endif
+
 	Vector2 oldpos;
+
 	
 	void Update()
 		
@@ -82,10 +107,17 @@ public class MouseLook : MonoBehaviour
 		// Get raw mouse input for a cleaner reading on more sensitive mice.
 		
 		//var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+
+
+#if ACCELEROMETER
+		float x = accelerometerSensibility* Input.acceleration.x;
+		float y = accelerometerSensibility*Input.acceleration.y;
+		var mouseDelta = new Vector2(x,y);
+		oldpos = Input.mousePosition;
+#else
 		var mouseDelta = new Vector2(-20*(oldpos.x - Input.mousePosition.x) / ((float)Screen.width), -20*(oldpos.y - Input.mousePosition.y) / ((float)Screen.height));
 		oldpos = Input.mousePosition;
-
-		
+#endif
 		// Scale input against the sensitivity setting and multiply that against the smoothing value.
 		
 		mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
