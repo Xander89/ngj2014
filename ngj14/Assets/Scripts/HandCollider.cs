@@ -72,7 +72,7 @@ public class HandCollider : MonoBehaviour {
 
 	void Update()
 	{
-		if(end && Input.GetKeyDown(KeyCode.Space))
+		if(end && ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0)))
 		{
 			PlayerPrefs.SetInt("showMenu", 0);
 			Application.LoadLevel (0);

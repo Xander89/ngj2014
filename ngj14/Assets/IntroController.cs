@@ -67,7 +67,7 @@ public class IntroController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(ready_To_Start && Input.GetKeyDown(KeyCode.Space))
+		if(ready_To_Start && ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0)))
 		{
 			ready_To_Start = false;
 			StartCoroutine(afterPress());
